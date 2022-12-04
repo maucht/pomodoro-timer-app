@@ -1,0 +1,155 @@
+@font-face {
+    font-family: 'Montserrat-thin-italic';
+    src: url('./fonts/Montserrat-ThinItalic.eot');
+    src: url('./fonts/Montserrat-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-ThinItalic.woff') format('woff'),
+        url('./fonts/Montserrat-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Montserrat-thin';
+    src: url('./fonts/Montserrat-Thin.eot');
+    src: url('./fonts/Montserrat-Thin.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Thin.woff') format('woff'),
+        url('./fonts/Montserrat-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Regular.eot');
+    src: url('./fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Regular.woff') format('woff'),
+        url('./fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Montserrat-medium';
+    src: url('./fonts/Montserrat-Medium.eot');
+    src: url('./fonts/Montserrat-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Medium.woff') format('woff'),
+        url('./fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Montserrat-bold';
+    src: url('./fonts/Montserrat-Bold.eot');
+    src: url('./fonts/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Bold.woff') format('woff'),
+        url('./fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+@media only screen and (min-width:1024px){
+  #navBar{
+    position:absolute;
+    top:0;
+    left:0;
+    height:10vh;
+    width:100vw;
+  }
+  #navBar ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    text-align:center;
+  }
+  #navBar li{
+    display:inline-block;
+  }
+  .navBarLinks{
+    text-decoration:none;
+    color:black;
+    width:100px;
+    display:block;
+    padding:25px 20px;
+    text-transform:uppercase;
+    text-align:center;
+    transition:all 0.2s ease-in-out;
+  }
+ .navBarLinks:hover{
+    transition:all 0.2s ease-in-out;
+    color:rgb(67, 131, 250);
+    transform:scale(1.1);
+  
+  }
+  .navItems{
+    display:inline-block;
+  }
+  #navBarLogo{
+    position:absolute;
+    height:15vh;
+    left:2vw;
+    top:-3vh;
+    width:auto;
+  }
+  #navBarBreak{
+    width:90vw;
+    color:rgb(67, 131, 250);
+  
+  }
+}
+
+@media only screen and (max-width:1024px){
+  #navBar{
+    position:absolute;
+    top:0;
+    left:0;
+    height:10vh;
+    width:100vw;
+  }
+  #navBar ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    text-align:center;
+  }
+  #navBar li{
+    display:inline-block;
+  }
+  .navBarLinks{
+    text-decoration:none;
+    color:black;
+    width:100px;
+    display:block;
+    padding:25px 20px;
+    text-transform:uppercase;
+    text-align:center;
+    transition:all 0.2s ease-in-out;
+  }
+ .navBarLinks:hover{
+    transition:all 0.2s ease-in-out;
+    color:rgb(67, 131, 250);
+    transform:scale(1.1);
+  
+  }
+  .navItems{
+    display:inline-block;
+  }
+  #navBarLogo{
+    content:url('C:\Users\tyler\OneDrive\Documents\pomodoro-react\public\dorotimeLogoCompact.png');
+    position:relative;
+    min-height:10vh;
+    max-height:15vh;
+    left:1vw;
+    top:-3vh;
+    width:auto;
+  }
+  #navBarBreak{
+    width:90vw;
+    color:rgb(67, 131, 250);
+  
+  }
+}
