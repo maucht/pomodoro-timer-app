@@ -100,6 +100,14 @@
     color:rgb(67, 131, 250);
   
   }
+
+  #linkSelected{
+    transform:scale(1.1);
+    color:rgb(67, 131, 250);
+  }
+  #linkSelected:hover{
+    transform:scale(1.1);
+  }
 }
 
 @media only screen and (max-width:1024px){
@@ -150,6 +158,5 @@
   #navBarBreak{
     width:90vw;
     color:rgb(67, 131, 250);
-  
   }
 }

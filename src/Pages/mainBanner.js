@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '../CSS/mainBanner.css';
+import './PageStyles/mainBanner.css';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../Components/navbar';
 
@@ -19,19 +19,7 @@ export default class Main extends React.Component{
     }
     topBanner(){
       return(
-        <NavBar/>
-
-      /*<div id="topBanner">
-        <div id="topBannerNavBar">
-          <ul id="topBannerNavBar">
-            <li className="topBannerNavItem"><NavLink to="/">Home</NavLink></li>
-            <li className="topBannerNavItem"><NavLink to="/">About</NavLink></li>
-            <li className="topBannerNavItem"><NavLink to="/">Timer</NavLink></li>
-          </ul>
-        </div>
-        <img id="topBannerLogo" src="dorotimeLogo.png"/>
-        <hr id="topBannerBreak"/>
-      </div>*/
+        <NavBar selected="about"/>
       )
     }
     mainBanner(){

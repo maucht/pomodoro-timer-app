@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Regular.eot');
+    src: url('./fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Regular.woff') format('woff'),
+        url('./fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+@media only screen{
+    #dataAnalyzerWindow{
+        position:absolute;
+        min-height:60vh;
+        min-width:45vw;
+        max-height:60vh;
+        max-width:45vw;
+
+        top:20vh;
+        left:5vw;
+
+        font-family:'Montserrat';
+        text-align:center;
+        background-color:rgba(245,245,245,1);
+        border-style:solid;
+        border-radius:4px;
+        border-color:gray;
+
+    }
+}
