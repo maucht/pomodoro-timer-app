@@ -1,0 +1,304 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat-Regular.eot');
+    src: url('./fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Regular.woff') format('woff'),
+        url('./fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Montserrat-medium';
+    src: url('./fonts/Montserrat-Medium.eot');
+    src: url('./fonts/Montserrat-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Medium.woff') format('woff'),
+        url('./fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Montserrat-bold';
+    src: url('./fonts/Montserrat-Bold.eot');
+    src: url('./fonts/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Bold.woff') format('woff'),
+        url('./fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+@media only screen and (min-width:1024px){
+#timerStartWindow{
+    position:absolute;
+    min-height:70vh;
+    min-width:50vw;
+    max-height:70vh;
+    max-width:50vw;
+
+    top:20vh;
+    left:5vw;
+
+    border-style:solid;
+    border-color:gray;
+    border-radius:4px;
+    background-color:rgba(245,245,245,1);
+
+}
+#timerStartWindowHeader{
+  text-align:center;
+  width:100%;
+}
+#timerWorkTimePrompt{
+  position:relative;
+  display:flex;
+  min-width:90%;
+  max-width:90%;
+  top:10vh;
+  left:5%;
+
+  font-size:3vh;
+  flex-direction:row;
+  gap:2vw;
+
+}
+#timerWorkTimeOptions{
+  display:flex;
+  gap:3vw;
+}
+.timerTimeOptionBox{
+  position:relative;
+
+  min-height:50px;
+  min-width:50px;
+  max-height:50px;
+  max-width:50px;
+  top:-15px;
+  border-radius:6px;
+  border-style:solid;
+  border-color:rgba(67, 131, 250,0.7);
+
+}
+.timerTimeOptionBox:hover{
+  background-color:rgba(67, 131, 250,0.7);
+  color:white;
+}
+.timerTimeOptionBox::after{
+  content:"";
+  text-align:center;
+  font-size:2vh;
+  line-height:50px;
+  padding-left:10px;
+}
+#timerWorkTimeBoxOne{
+  order:1;
+}
+#timerWorkTimeBoxTwo{
+  order:2;
+}
+#timerWorkTimeBoxThree{
+  order:3;
+}
+#timerWorkTimeBoxFour{
+  order:4;
+}
+#timerWorkTimeBoxFive{
+  order:5;
+}
+#timerWorkTimeBoxOne::after{
+  content:"10m";
+  
+}
+#timerWorkTimeBoxTwo::after{
+  content:"15m";
+}
+#timerWorkTimeBoxThree::after{
+  content:"20m";
+}
+#timerWorkTimeBoxFour::after{
+  content:"25m";
+}
+#timerWorkTimeBoxFive::after{
+  content:"30m";
+}
+
+#timerBreakTimePrompt{
+  position:relative;
+  display:flex;
+  flex-direction:row;
+  gap:1.5vw;
+  min-width:90%;
+  max-width:90%;
+  top:20vh;
+  left:5%;
+}
+#timerBreakTimeOptions{
+  display:flex;
+  gap:3vw;
+}
+#timerBreakTimeBoxOne{
+  order:1;
+}
+#timerBreakTimeBoxTwo{
+  order:2;
+}
+#timerBreakTimeBoxThree{
+  order:3;
+}
+#timerBreakTimeBoxFour{
+  order:4;
+}
+#timerBreakTimeBoxFive{
+  order:5;
+}
+#timerBreakTimeBoxOne::after{
+  content:"2m";
+}
+#timerBreakTimeBoxTwo::after{
+  content:"5m";
+}
+#timerBreakTimeBoxThree::after{
+  content:"10m";
+}
+#timerBreakTimeBoxFour::after{
+  content:"15m";
+}
+#timerBreakTimeBoxFive::after{
+  content:"20m";
+}
+#audioPanel{
+  position:absolute;
+  min-height:70vh;
+  min-width:25vw;
+  max-height:70vh;
+  max-width:25vw;
+
+  left:65vw;
+  top:20vh;
+  
+  border-style:solid;
+  border-color:gray;
+  border-radius:4px;
+  background-color:rgba(245,245,245,1);
+}
+#audioPanelHeader{
+  text-align:center;
+  width:100%;
+}
+}
+
+@media only screen and (max-width:1024px){
+  #timerStartWindow{
+      position:absolute;
+      min-height:70vh;
+      min-width:50vw;
+      max-height:70vh;
+      max-width:50vw;
+  
+      top:20vh;
+      left:5vw;
+  
+      border-style:solid;
+      border-color:gray;
+      border-radius:4px;
+      background-color:rgba(245,245,245,1);
+  
+  }
+  #timerStartWindowHeader{
+    text-align:center;
+    width:100%;
+  }
+  #timerWorkTimePrompt{
+    position:relative;
+    display:flex;
+    width:95%;
+    top:10vh;
+    left:5%;
+  
+    font-size:3vh;
+    flex-direction:row;
+    gap:2vw;
+  
+  }
+  #timerWorkTimeOptions{
+    display:flex;
+    gap:2vw;
+  }
+  .timerTimeOptionBox{
+    position:relative;
+  
+    min-height:30px;
+    min-width:30px;
+    max-height:30px;
+    max-width:30px;
+    top:-15px;
+    border-radius:6px;
+    border-style:solid;
+    border-color:rgba(67, 131, 250,0.7);
+    transition:all 0.2 ease-in-out;
+  }
+  .timerTimeOptionBox:hover{
+    transition:all 0.2 ease-in-out;
+    background-color:rgba(67, 131, 250,0.7);
+    color:white;
+  }
+  .timerTimeOptionBox::after{
+    content:"";
+    text-align:center;
+    font-size:1.25vh;
+    line-height:30px;
+    padding-left:5px;
+  }
+  #timerWorkTimeBoxOne{
+    order:1;
+  }
+  #timerWorkTimeBoxTwo{
+    order:2;
+  }
+  #timerWorkTimeBoxThree{
+    order:3;
+  }
+  #timerWorkTimeBoxFour{
+    order:4;
+  }
+  #timerWorkTimeBoxFive{
+    order:5;
+  }
+  #timerWorkTimeBoxOne::after{
+    content:"10m";
+    
+  }
+  #timerWorkTimeBoxTwo::after{
+    content:"15m";
+  }
+  #timerWorkTimeBoxThree::after{
+    content:"20m";
+  }
+  #timerWorkTimeBoxFour::after{
+    content:"25m";
+  }
+  #timerWorkTimeBoxFive::after{
+    content:"30m";
+  }
+  #audioPanel{
+    position:absolute;
+    min-height:70vh;
+    min-width:25vw;
+    max-height:70vh;
+    max-width:25vw;
+  
+    left:65vw;
+    top:20vh;
+    
+    border-style:solid;
+    border-color:gray;
+    border-radius:4px;
+    background-color:rgba(245,245,245,1);
+  }
+  #audioPanelHeader{
+    text-align:center;
+    width:100%;
+  }
+  }

@@ -119,30 +119,7 @@ body {
 
 }
 
-#demoButton{
-  position:absolute;
 
-  top:78vh;
-  left:10vw;
-  min-height:7vh;
-  min-width:10vw;
-  max-height:7vh;
-  max-width:10vw;
-
-  font-family:Montserrat-medium;
-  text-align:center;
-  font-size:3vh;
-  line-height:7vh;
-  background-color:rgb(67, 131, 250);
-  color:white;
-  border-radius:10px;
-
-  transition:all 0.2s ease-in-out;
-}
-#demoButton:hover{
-  transition:all 0.2s ease-in-out;
-  transform:scale(1.1);
-}
 #mainBanner{
   position:absolute;
 

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './PageStyles/mainBanner.css';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../Components/navbar';
+import BlueButton from '../Components/blueButton';
 
 export default class Main extends React.Component{
     constructor(props){
@@ -13,9 +14,8 @@ export default class Main extends React.Component{
     }
     demoButton(){
       return(
-      <div id="demoButton">Go to Dash</div>
+        <BlueButton content="Go to Dash" clickDirection="/dashboard" idKey="banner"/>
       )
-  
     }
     topBanner(){
       return(

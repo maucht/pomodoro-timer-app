@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Navigate, unstable_HistoryRouter } from 'react-router-dom';
 import NavBar from '../Components/navbar';
 import './PageStyles/dashboard.css';
 

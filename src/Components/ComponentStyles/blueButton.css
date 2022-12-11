@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Montserrat-medium';
+    src: url('./fonts/Montserrat-Medium.eot');
+    src: url('./fonts/Montserrat-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Montserrat-Medium.woff') format('woff'),
+        url('./fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+@media only screen{}
+.blueButton{
+    position:absolute;
+  
+    top:78vh;
+    left:10vw;
+    min-height:7vh;
+    min-width:10vw;
+    max-height:7vh;
+    max-width:10vw;
+  
+    font-family:Montserrat-medium;
+    text-align:center;
+    font-size:3vh;
+
+    background-color:rgb(67, 131, 250);
+    color:white;
+    border-radius:10px;
+    line-height:7vh;
+    z-index:10;
+    user-select: none;
+    transition:all 0.2s ease-in-out;
+  }
+  .blueButton:hover{
+    transition:all 0.2s ease-in-out;
+    transform:scale(1.1);
+  }
+  #bannerButton{
+  }
+  #timerSubmitButton{
+    min-height:8vh;
+    max-height:8vh;
+    font-size:3vh;
+    line-height:8vh;
+    left:40vw;
+  }
