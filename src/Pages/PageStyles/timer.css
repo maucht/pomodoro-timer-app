@@ -282,6 +282,12 @@
   #timerWorkTimeBoxFive::after{
     content:"30m";
   }
+  .timerTimeOptionBoxSelected{
+    background-color:rgba(67, 131, 250,0.8) !important;
+  }
+  .timerTimeOptionBoxSelected:hover{
+    background-color:white;
+  }
   #audioPanel{
     position:absolute;
     min-height:70vh;
