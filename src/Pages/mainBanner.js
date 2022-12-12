@@ -12,9 +12,10 @@ export default class Main extends React.Component{
   
       }
     }
+
     demoButton(){
       return(
-        <BlueButton content="Go to Dash" clickDirection="/dashboard" idKey="banner"/>
+        <BlueButton content="Go to Dash" clickDirection="/dashboard" idKey="banner" purpose="navigation"/>
       )
     }
     topBanner(){

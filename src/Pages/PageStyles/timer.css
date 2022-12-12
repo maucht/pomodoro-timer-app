@@ -168,6 +168,55 @@
 #timerBreakTimeBoxFive::after{
   content:"20m";
 }
+
+#timerRepTimePrompt{
+  position:relative;
+  display:flex;
+  min-width:90%;
+  max-width:90%;
+  top:30vh;
+  left:5%;
+
+  font-size:3vh;
+  flex-direction:row;
+  gap:1.5vw;
+
+}
+#timerRepTimeOptions{
+  display:flex;
+  gap:3vw;
+}
+#timerRepTimeBoxOne{
+  order:1;
+}
+#timerRepTimeBoxTwo{
+  order:2;
+}
+#timerRepTimeBoxThree{
+  order:3;
+}
+#timerRepTimeBoxFour{
+  order:4;
+}
+#timerRepTimeBoxFive{
+  order:5;
+}
+#timerRepTimeBoxOne::after{
+  content:"1";
+}
+#timerRepTimeBoxTwo::after{
+  content:" 2";
+}
+#timerRepTimeBoxThree::after{
+  content:" 3";
+}
+#timerRepTimeBoxFour::after{
+  content:" 4";
+}
+#timerRepTimeBoxFive::after{
+  content:" 5";
+}
+
 #audioPanel{
   position:absolute;
   min-height:70vh;
@@ -282,12 +331,40 @@
   #timerWorkTimeBoxFive::after{
     content:"30m";
   }
-  .timerTimeOptionBoxSelected{
-    background-color:rgba(67, 131, 250,0.8) !important;
+  
+
+  #timerRepTimePrompt{
+    position:relative;
+    display:flex;
+    width:95%;
+    top:30vh;
+    left:5%;
+  
+    font-size:3vh;
+    flex-direction:row;
+    gap:2vw;
+  
   }
-  .timerTimeOptionBoxSelected:hover{
-    background-color:white;
+  #timerRepTimeOptions{
+    display:flex;
+    gap:2vw;
   }
+  #timerRepTimeBoxOne{
+    order:1;
+  }
+  #timerRepTimeBoxTwo{
+    order:2;
+  }
+  #timerRepTimeBoxThree{
+    order:3;
+  }
+  #timerRepTimeBoxFour{
+    order:4;
+  }
+  #timerRepTimeBoxFive{
+    order:5;
+  }
+  
   #audioPanel{
     position:absolute;
     min-height:70vh;

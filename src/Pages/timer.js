@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import BlueButton from '../Components/blueButton';
 import NavBar from '../Components/navbar';
+import TimerComponent from '../Components/timerComponent';
 import './PageStyles/timer.css';
 
 export default class timer extends Component {
     constructor(props){
         super(props);
         this.state={
+            timerStarted:0,
             selectedWorkTime:-1,
             selectedBreakTime:-1,
+            selectedRepTime:-1,
             workTime:-1,
             breakTime:-1,
+            repTime:-1
         }
     }
     handleWorkTimeSelect(boxSelected){ //FIXME prevents hover styling
@@ -39,7 +43,7 @@ export default class timer extends Component {
             }
         }
         this.setState({
-            workTime:valueDict[boxSelected]
+            selectedWorkTime:valueDict[boxSelected]
         })
     }
     handleBreakTimeSelect(boxSelected){
@@ -69,10 +73,52 @@ export default class timer extends Component {
         }
 
         this.setState({
-            breakTime:valueDict[boxSelected]
+            selectedBreakTime:valueDict[boxSelected]
         })
     }
-    handleTimerSubmit(){}
+    handleRepTimeSelect(boxSelected){
+        var boxDict={
+            1:"timerRepTimeBoxOne",
+            2:"timerRepTimeBoxTwo",
+            3:"timerRepTimeBoxThree",
+            4:"timerRepTimeBoxFour",
+            5:"timerRepTimeBoxFive"
+        }
+        var valueDict={
+            1:1,
+            2:2,
+            3:3,
+            4:4,
+            5:5
+        }
+        var selectedElement=document.getElementById(boxDict[boxSelected])
+        selectedElement.style.backgroundColor="rgba("+67+","+131+","+250+","+0.85+")"
+        selectedElement.style.color="white"
+
+        for(let key in boxDict){ //Removes styling from un-selected choices
+            if(key!=boxSelected){
+                document.getElementById(boxDict[key]).style.backgroundColor=null
+                document.getElementById(boxDict[key]).style.color=null
+            }
+        }
+
+        this.setState({
+            selectedRepTime:valueDict[boxSelected]
+        })
+    }
+    handleTimerSubmit(){
+        if(this.state.selectedWorkTime!=-1 && this.state.selectedBreakTime!=-1 && this.state.selectedRepTime!=-1){
+            this.setState({
+                workTime:this.state.selectedWorkTime,
+                breakTime:this.state.selectedBreakTime,
+                repTime:this.state.selectedRepTime,
+                timerStarted:1
+            })
+    }
+        else{
+            console.log("Fuck you")
+        }
+    }
     timerStartWindow(){ // Use text areas with modern, clean looking design
         return(
             <>
@@ -80,11 +126,11 @@ export default class timer extends Component {
                 <div id="timerStartWindowHeader">Timer Options</div>
                 <div id="timerWorkTimePrompt">Work Time:
                     <div id="timerWorkTimeOptions">
-                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxOne" onClick={(boxSelected,run)=>this.handleWorkTimeSelect(1)}></div>
-                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxTwo" onClick={(boxSelected,run)=>this.handleWorkTimeSelect(2)}></div>
-                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxThree" onClick={(boxSelected,run)=>this.handleWorkTimeSelect(3)}></div>
-                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxFour" onClick={(boxSelected,run)=>this.handleWorkTimeSelect(4)}></div>
-                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxFive" onClick={(boxSelected,run)=>this.handleWorkTimeSelect(5)}></div>
+                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxOne" onClick={(boxSelected)=>this.handleWorkTimeSelect(1)}></div>
+                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxTwo" onClick={(boxSelected)=>this.handleWorkTimeSelect(2)}></div>
+                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxThree" onClick={(boxSelected)=>this.handleWorkTimeSelect(3)}></div>
+                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxFour" onClick={(boxSelected)=>this.handleWorkTimeSelect(4)}></div>
+                        <div className="timerTimeOptionBox" id="timerWorkTimeBoxFive" onClick={(boxSelected)=>this.handleWorkTimeSelect(5)}></div>
                     </div>
                 </div>
                 <div id="timerBreakTimePrompt">Break Time:
@@ -96,8 +142,19 @@ export default class timer extends Component {
                         <div className="timerTimeOptionBox" id="timerBreakTimeBoxFive" onClick={(boxSelected)=>this.handleBreakTimeSelect(5)}></div>
                     </div>
                 </div>
+                <div id="timerRepTimePrompt">Repetitions:
+                    <div id="timerRepTimeOptions">
+                        <div className="timerTimeOptionBox" id="timerRepTimeBoxOne" onClick={(boxSelected)=>this.handleRepTimeSelect(1)}></div>
+                        <div className="timerTimeOptionBox" id="timerRepTimeBoxTwo" onClick={(boxSelected)=>this.handleRepTimeSelect(2)}></div>
+                        <div className="timerTimeOptionBox" id="timerRepTimeBoxThree" onClick={(boxSelected)=>this.handleRepTimeSelect(3)}></div>
+                        <div className="timerTimeOptionBox" id="timerRepTimeBoxFour" onClick={(boxSelected)=>this.handleRepTimeSelect(4)}></div>
+                        <div className="timerTimeOptionBox" id="timerRepTimeBoxFive" onClick={(boxSelected)=>this.handleRepTimeSelect(5)}></div>
+                    </div>
+                </div>
             </div>
-            <BlueButton id="submitButton" content="Start" clickDirection="" idKey="timerSubmit"/>
+            <div id="forClickEventIGNORE" onClick={()=>this.handleTimerSubmit()}>
+                <BlueButton id="submitButton" content="Start" idKey="timerSubmit" purpose="generic"/>
+            </div>
             </>
         )
 
@@ -112,20 +169,31 @@ export default class timer extends Component {
         )
 
     }
+    timerInterface(){
 
+    }
     navbar(){
         return(
         <NavBar selected="timer"/>
         )
-
     }
     render() { // USE THE TIMER COMPONENT IN THE COMPONENT FOLDER
-        return (
-        <>
-        <>{this.audioSelectionPanel()}</>
-        <>{this.timerStartWindow()}</>
-        <>{this.navbar()}</>
-        </>
-    )
+        switch(this.state.timerStarted){
+            case(0):
+                return (
+                <>
+                <>{this.audioSelectionPanel()}</>
+                <>{this.timerStartWindow()}</>
+                <>{this.navbar()}</>
+                </>
+            )
+            case(1):
+                return(
+                    <>
+                    <>{this.navbar()}</>
+                    <>{this.timerInterface()}</>
+                    </>
+                )
+        }
     }
 }
