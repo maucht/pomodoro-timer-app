@@ -131,7 +131,7 @@
   gap:1.5vw;
   min-width:90%;
   max-width:90%;
-  top:20vh;
+  top:18vh;
   left:5%;
 }
 #timerBreakTimeOptions{
@@ -174,7 +174,7 @@
   display:flex;
   min-width:90%;
   max-width:90%;
-  top:30vh;
+  top:28vh;
   left:5%;
 
   font-size:3vh;
