@@ -59,6 +59,8 @@
     left:0;
     height:10vh;
     width:100vw;
+
+    z-index:100;
   }
   #navBar ul{
     list-style:none;

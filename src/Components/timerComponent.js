@@ -1,8 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
+import './ComponentStyles/timerComponent.css'
+const TimerComponent = (props) => {
+    
+    if(props.secondsLeft.toString().length>2||props.minutesLeft.toString().length>2){
+        return(
+            <div id="timerDisplay">Loading...</div>
+        )
+    }
+    else{
+    return (
+        <div id="timerDisplay">{props.minutesLeft}:{props.secondsLeft}</div>
+      )
+    }
 
-export const timerComponent = (props) => {
-    console.log("e")
-  return (
-    <div>{props.workTime}+{props.breakTime}+{props.repTime}</div>
-  )
 }
+export default TimerComponent;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import BlueButton from '../Components/blueButton';
 import NavBar from '../Components/navbar';
-import timerComponent from '../Components/timerComponent';
+import TimerComponent from '../Components/timerComponent';
 import './PageStyles/timer.css';
 
 export default class timer extends Component {
@@ -14,8 +14,25 @@ export default class timer extends Component {
             selectedRepTime:-1,
             workTime:-1,
             breakTime:-1,
-            repTime:-1
+            repTime:-1,
+            minutesLeft:-1,
+            secondsLeft:-1,
+            startTime:0,
+            targetTime:-1,
         }
+    }
+    componentDidMount(){
+        setInterval(()=>{
+        this.setState({
+            targetTime:this.state.startTime+this.state.workTime,
+        })},10)
+        setInterval(()=>{
+            const d = new Date()
+        this.setState({
+            
+            minutesLeft:((Math.floor((this.state.targetTime-d.getTime())/60000))),
+            secondsLeft:(Math.floor((this.state.targetTime-d.getTime()-this.state.minutesLeft*60000)/1000))
+        })},1000)
     }
     handleWorkTimeSelect(boxSelected){ //FIXME prevents hover styling
         var boxDict={
@@ -26,11 +43,11 @@ export default class timer extends Component {
             5:"timerWorkTimeBoxFive"
         }
         var valueDict={
-            1:10,
-            2:15,
-            3:20,
-            4:25,
-            5:30
+            1:600000,
+            2:900000,
+            3:1200000,
+            4:1500000,
+            5:1800000
         }
         var selectedElement=document.getElementById(boxDict[boxSelected])
         selectedElement.style.backgroundColor="rgba("+67+","+131+","+250+","+0.85+")"
@@ -55,11 +72,11 @@ export default class timer extends Component {
             5:"timerBreakTimeBoxFive"
         }
         var valueDict={
-            1:2,
-            2:5,
-            3:10,
-            4:15,
-            5:20
+            1:120000,
+            2:300000,
+            3:600000,
+            4:900000,
+            5:1200000
         }
         var selectedElement=document.getElementById(boxDict[boxSelected])
         selectedElement.style.backgroundColor="rgba("+67+","+131+","+250+","+0.85+")"
@@ -107,11 +124,13 @@ export default class timer extends Component {
         })
     }
     handleTimerSubmit(){
+        const d = new Date()
         if(this.state.selectedWorkTime!=-1 && this.state.selectedBreakTime!=-1 && this.state.selectedRepTime!=-1){
             this.setState({
                 workTime:this.state.selectedWorkTime,
                 breakTime:this.state.selectedBreakTime,
                 repTime:this.state.selectedRepTime,
+                startTime:d.getTime(),
                 timerStarted:1
             })
     }
@@ -169,12 +188,14 @@ export default class timer extends Component {
         )
 
     }
-    timerInterface(){
-        <>
-        <timerComponent workTime={this.state.workTime} breakTime={this.state.breakTime} repTime={this.state.repTime}/>
-        </>
+    timerInterface(){  
+        return(
+            <>
+            <TimerComponent minutesLeft={this.state.minutesLeft} secondsLeft={this.state.secondsLeft}/>
+            </>
+        )
     }
-    navbar(){
+    navbar(){ //FIXME: add sensitive page bool prop to navbar, set it to true when the timer starts
         return(
         <NavBar selected="timer"/>
         )
