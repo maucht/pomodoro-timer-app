@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import BlueButton from '../Components/blueButton';
 import NavBar from '../Components/navbar';
-import TimerComponent from '../Components/timerComponent';
+import timerComponent from '../Components/timerComponent';
 import './PageStyles/timer.css';
 
 export default class timer extends Component {
@@ -170,7 +170,9 @@ export default class timer extends Component {
 
     }
     timerInterface(){
-
+        <>
+        <timerComponent workTime={this.state.workTime} breakTime={this.state.breakTime} repTime={this.state.repTime}/>
+        </>
     }
     navbar(){
         return(
