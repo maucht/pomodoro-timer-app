@@ -11,6 +11,9 @@ import {Routes, Route} from "react-router-dom";
 // Implement cookie based backend and use Python django/flask
 
 
+// Struggles: onClick bluebutton not working well with class functions
+// Timer states needing to be updated one after the other. Eventually i decided on setIntervals and loading text in its place
+
 // Learning goals: Timers, real time updating, responsive design, cookies and backend development
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

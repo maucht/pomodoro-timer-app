@@ -15,26 +15,41 @@ export default class timer extends Component {
             workTime:-1,
             breakTime:-1,
             repTime:-1,
-            minutesLeft:-1,
-            secondsLeft:-1,
+            minutesLeft:null,
+            secondsLeft:null,
             startTime:0,
             targetTime:-1,
+            isWorkTime:false,
+            isBreakTime:false,
         }
     }
     componentDidMount(){
         setInterval(()=>{
-        this.setState({
-            targetTime:this.state.startTime+this.state.workTime,
-        })},10)
+            if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){
+                this.setState({timerStarted:1})
+            }
+            this.setState({
+                targetTime:this.state.startTime+this.state.workTime,
+            })},10)
         setInterval(()=>{
             const d = new Date()
-        this.setState({
-            
-            minutesLeft:((Math.floor((this.state.targetTime-d.getTime())/60000))),
-            secondsLeft:(Math.floor((this.state.targetTime-d.getTime()-this.state.minutesLeft*60000)/1000))
-        })},1000)
+            if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){
+                this.setState({
+                minutesLeft:((Math.floor((this.state.targetTime-d.getTime())/60000))),
+                secondsLeft:(Math.floor((this.state.targetTime-d.getTime()-this.state.minutesLeft*60000+1000)/1000))
+                }
+        )}
+            else{
+                this.setState({
+                    minutesLeft:null,
+                    secondsLeft:null,
+                    timerStarted:0
+                })
+            }
+            },1000)
+
     }
-    handleWorkTimeSelect(boxSelected){ //FIXME prevents hover styling
+    handleWorkTimeSelect(boxSelected){
         var boxDict={
             1:"timerWorkTimeBoxOne",
             2:"timerWorkTimeBoxTwo",
@@ -43,7 +58,7 @@ export default class timer extends Component {
             5:"timerWorkTimeBoxFive"
         }
         var valueDict={
-            1:600000,
+            1:10000,// FIXME: replace with 600000
             2:900000,
             3:1200000,
             4:1500000,
@@ -131,8 +146,14 @@ export default class timer extends Component {
                 breakTime:this.state.selectedBreakTime,
                 repTime:this.state.selectedRepTime,
                 startTime:d.getTime(),
-                timerStarted:1
+                isWorkTime:true,
+                isBreakTime:false
             })
+            this.setState({
+                minutesLeft:((Math.floor((this.state.targetTime-d.getTime())/60000))),
+                secondsLeft:(Math.floor((this.state.targetTime-d.getTime()-this.state.minutesLeft*60000+1000)/1000))
+                }
+        )
     }
         else{
             console.log("Fuck you")
@@ -188,12 +209,14 @@ export default class timer extends Component {
         )
 
     }
-    timerInterface(){  
-        return(
-            <>
-            <TimerComponent minutesLeft={this.state.minutesLeft} secondsLeft={this.state.secondsLeft}/>
-            </>
-        )
+    timerInterface(){ 
+        if((this.state.minutesLeft!=null || this.state.secondsLeft!=null) && this.state.isWorkTime){
+            return(
+                <>
+                <TimerComponent minutesLeft={this.state.minutesLeft} secondsLeft={this.state.secondsLeft}/>
+                </>
+            )
+        }
     }
     navbar(){ //FIXME: add sensitive page bool prop to navbar, set it to true when the timer starts
         return(
