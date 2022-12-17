@@ -17,12 +17,15 @@ const TimerComponent = (props) => { //FIXME: Minutes displayed jumps when second
     }
     if(displayMinutes.length>2||displaySeconds.length>2){ // Maybe add if seconds==60, seconds=0
         return(
-            <div id="timerDisplay">Loading...</div>
+            <div id={props.timerSection=="Work Time" ? "timerDisplayWork":"timerDisplayBreak"}>Loading...</div>
         )
     }
     else{
     return (
-        <div id="timerDisplay">{displayMinutes}:{displaySeconds}</div>
+        <>
+        <div id={props.timerSection=="Work Time" ? "timerDisplayHeaderWork":"timerDisplayHeaderBreak"}>{props.timerSection}</div>
+        <div id={props.timerSection=="Work Time" ? "timerDisplayWork":"timerDisplayBreak"}>{displayMinutes}:{displaySeconds}</div>
+        </>
       )
     }
 

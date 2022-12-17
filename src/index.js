@@ -15,6 +15,7 @@ import {Routes, Route} from "react-router-dom";
 // Timer states needing to be updated one after the other. Eventually i decided on setIntervals and loading text in its place
 
 //Unfixed struggles: double clicking on timer settings because of timer setState timing.
+    // inconsistent transitions from work time to break time, likely due to lag
 
 // Learning goals: Timers, real time updating, responsive design, cookies and backend development
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,4 +1,4 @@
-#timerDisplay{
+#timerDisplayWork{
     position:absolute;
     text-align:center;
     height:100vh;
@@ -10,4 +10,44 @@
     color:rgba(67, 131, 250,0.7);
 
     text-shadow: 0.1vw 0.1vh rgba(0, 0, 0, 1);
+}
+#timerDisplayBreak{
+    position:absolute;
+    text-align:center;
+    height:100vh;
+    width:100vw;
+    line-height:100vh;
+
+    font-size:20vh;
+    user-select:none;
+    color:rgba(250, 67, 67, 0.7);
+
+    text-shadow: 0.1vw 0.1vh rgba(0, 0, 0, 1);
+}
+#timerDisplayHeaderWork{
+    position:absolute;
+    text-align:center;
+    height:100vh;
+    width:100vw;
+    line-height:100vh;
+    top:-25vh;
+
+    font-size:8vh;
+    user-select:none;
+    color:rgba(67, 131, 250,0.7);
+
+}
+
+#timerDisplayHeaderBreak{
+    position:absolute;
+    text-align:center;
+    height:100vh;
+    width:100vw;
+    line-height:100vh;
+    top:-25vh;
+
+    font-size:8vh;
+    user-select:none;
+    color:rgba(250, 67, 67, 0.7);
+
 }

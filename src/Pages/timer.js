@@ -23,32 +23,78 @@ export default class timer extends Component {
             isBreakTime:false,
         }
     }
-    componentDidMount(){ 
+    componentDidMount(){ // The transition from work time to break time works only sometimes, likely because of lag with setIntervals
         setInterval(()=>{
-            if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){
+            if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){ // This causes a single-timer run
                 this.setState({timerStarted:1})
             }
+            if(this.state.isWorkTime){
             this.setState({
                 targetTime:this.state.startTime+this.state.workTime,
-            })},10)
+            })
+            }
+            else if(this.state.isBreakTime){
+                this.setState({
+                    targetTime:this.state.startTime+this.state.breakTime
+                })
+            }
+        },10)
         setInterval(()=>{
             const d = new Date()
-            if(this.state.targetTime-d.getTime()>0){
+            if(this.state.repTime==0){
+                this.setState({ // Reset
+                    minutesLeft:null,
+                    secondsLeft:null,
+                    isWorkTime:false,
+                    isBreakTime:false,
+                    selectedWorkTime:-1,
+                    selectedBreakTime:-1,
+                    selectedRepTime:-1,
+                    workTime:-1,
+                    breakTime:-1,
+                    timerStarted:0,
+                    repTime:-1,
+   
+                })
+
+            }
+            else if(this.state.targetTime-d.getTime()>0){
                 this.setState({
                 minutesLeft:((Math.floor((this.state.targetTime-d.getTime())/60000))),
                 secondsLeft:(Math.floor((this.state.targetTime-d.getTime()-this.state.minutesLeft*60000+1000)/1000))
                 }
         )}
-            else{
-                this.setState({
-                    minutesLeft:null,
-                    secondsLeft:null,
-                    timerStarted:0
-                })
+            else if(this.state.isWorkTime && !this.state.isBreakTime){ // End of Work Time
+                console.log("End of work time!") 
+                this.handleWorkToBreakTime()
+
+            }
+            else if(!this.state.isWorkTime && this.state.isBreakTime){ // End of break time
+                console.log("End of break time!")
+                this.handleBreaktoWorkTime()
 
             }
             },1000)
 
+    }
+    handleWorkToBreakTime(){
+        const d = new Date()
+        this.setState({
+            isWorkTime:false,
+            isBreakTime:true,
+            repTime:this.state.repTime-1,
+            startTime:d.getTime()
+            //timerStarted:0
+        })
+    }
+    handleBreaktoWorkTime(){
+        const d = new Date()
+        this.setState({
+            isWorkTime:true,
+            isBreakTime:false,
+            startTime:d.getTime()
+            //timerStarted:0
+        })
     }
     handleWorkTimeSelect(boxSelected){
         var boxDict={
@@ -211,10 +257,10 @@ export default class timer extends Component {
 
     }
     timerInterface(){ 
-        if((this.state.minutesLeft!=null || this.state.secondsLeft!=null) && this.state.isWorkTime){
+        if((this.state.minutesLeft!=null || this.state.secondsLeft!=null)){
             return(
                 <>
-                <TimerComponent minutesLeft={this.state.minutesLeft} secondsLeft={this.state.secondsLeft}/>
+                <TimerComponent minutesLeft={this.state.minutesLeft} secondsLeft={this.state.secondsLeft} timerSection={this.state.isWorkTime ? "Work Time":"Break Time"}/>
                 </>
             )
         }
