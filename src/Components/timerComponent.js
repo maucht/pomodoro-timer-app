@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './ComponentStyles/timerComponent.css'
-const TimerComponent = (props) => {
+const TimerComponent = (props) => { //FIXME: Minutes displayed jumps when seconds reaches 0
     var displayMinutes=props.minutesLeft.toString()
     var displaySeconds=props.secondsLeft.toString()
 

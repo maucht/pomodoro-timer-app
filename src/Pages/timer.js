@@ -23,7 +23,7 @@ export default class timer extends Component {
             isBreakTime:false,
         }
     }
-    componentDidMount(){
+    componentDidMount(){ 
         setInterval(()=>{
             if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){
                 this.setState({timerStarted:1})
@@ -33,7 +33,7 @@ export default class timer extends Component {
             })},10)
         setInterval(()=>{
             const d = new Date()
-            if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){
+            if(this.state.targetTime-d.getTime()>0){
                 this.setState({
                 minutesLeft:((Math.floor((this.state.targetTime-d.getTime())/60000))),
                 secondsLeft:(Math.floor((this.state.targetTime-d.getTime()-this.state.minutesLeft*60000+1000)/1000))
@@ -45,6 +45,7 @@ export default class timer extends Component {
                     secondsLeft:null,
                     timerStarted:0
                 })
+
             }
             },1000)
 

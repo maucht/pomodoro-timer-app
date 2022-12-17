@@ -14,6 +14,8 @@ import {Routes, Route} from "react-router-dom";
 // Struggles: onClick bluebutton not working well with class functions
 // Timer states needing to be updated one after the other. Eventually i decided on setIntervals and loading text in its place
 
+//Unfixed struggles: double clicking on timer settings because of timer setState timing.
+
 // Learning goals: Timers, real time updating, responsive design, cookies and backend development
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
