@@ -4,7 +4,7 @@ import NavBar from '../Components/navbar';
 import TimerComponent from '../Components/timerComponent';
 import './PageStyles/timer.css';
 
-export default class timer extends Component {
+export default class timer extends Component { // FIXME: timer doesn't properly transition from break time to work time
     constructor(props){
         super(props);
         this.state={
@@ -25,7 +25,7 @@ export default class timer extends Component {
     }
     componentDidMount(){ // The transition from work time to break time works only sometimes, likely because of lag with setIntervals
         setInterval(()=>{
-            if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){ // This causes a single-timer run
+            if(this.state.minutesLeft>-1 && this.state.secondsLeft>0){ // This causes timer to start
                 this.setState({timerStarted:1})
             }
             if(this.state.isWorkTime){
@@ -64,7 +64,7 @@ export default class timer extends Component {
                 secondsLeft:(Math.floor((this.state.targetTime-d.getTime()-this.state.minutesLeft*60000+1000)/1000))
                 }
         )}
-            else if(this.state.isWorkTime && !this.state.isBreakTime){ // End of Work Time
+            else if(this.state.isWorkTime && !this.state.isBreakTime && this.state.repTime!=0){ // End of Work Time
                 console.log("End of work time!") 
                 this.handleWorkToBreakTime()
 
@@ -74,18 +74,36 @@ export default class timer extends Component {
                 this.handleBreaktoWorkTime()
 
             }
+            if(this.state.isBreakTime && this.state.repTime==0){
+                console.log("STOP THE FUCKING SHIT")
+                this.setState({
+                    minutesLeft:null,
+                    secondsLeft:null,
+                    isWorkTime:false,
+                    isBreakTime:false,
+                    selectedWorkTime:-1,
+                    selectedBreakTime:-1,
+                    selectedRepTime:-1,
+                    workTime:-1,
+                    breakTime:-1,
+                    timerStarted:0,
+                    targetTime:d.getTime(),
+                    repTime:-1,
+                })}
             },1000)
 
     }
     handleWorkToBreakTime(){
         const d = new Date()
-        this.setState({
-            isWorkTime:false,
-            isBreakTime:true,
-            repTime:this.state.repTime-1,
-            startTime:d.getTime()
-            //timerStarted:0
-        })
+        if(this.state.repTime!=0){
+            this.setState({
+                isWorkTime:false,
+                isBreakTime:true,
+                repTime:this.state.repTime-1,
+                startTime:d.getTime()
+                //timerStarted:0
+            })
+    }
     }
     handleBreaktoWorkTime(){
         const d = new Date()
@@ -134,7 +152,7 @@ export default class timer extends Component {
             5:"timerBreakTimeBoxFive"
         }
         var valueDict={
-            1:120000,
+            1:20000, //120000
             2:300000,
             3:600000,
             4:900000,
