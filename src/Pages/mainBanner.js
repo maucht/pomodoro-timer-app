@@ -13,9 +13,9 @@ export default class Main extends React.Component{
       }
     }
 
-    demoButton(){
+    blueButton(){
       return(
-        <BlueButton content="Go to Dash" clickDirection="/dashboard" idKey="banner" purpose="navigation"/>
+        <BlueButton id="dashButton"content="Go to Dash" clickDirection="/dashboard" idKey="banner" purpose="navigation"/>
       )
     }
     topBanner(){
@@ -39,7 +39,7 @@ export default class Main extends React.Component{
         <>
           <>{this.topBanner()}</>
           <>{this.mainBanner()}</>
-          <>{this.demoButton()}</>
+          <>{this.blueButton()}</>
         </>
       )
       }

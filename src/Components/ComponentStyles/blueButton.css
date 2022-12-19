@@ -8,7 +8,6 @@
     font-style: normal;
     font-display: swap;
   }
-@media only screen{}
 .blueButton{
     position:absolute;
   
@@ -44,3 +43,8 @@
     line-height:8vh;
     left:40vw;
   }
+@media only screen and (max-width:1024px){
+  .blueButton{
+    font-size:1.2vw;
+  }
+}

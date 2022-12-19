@@ -4,6 +4,8 @@ import NavBar from '../Components/navbar';
 import TimerComponent from '../Components/timerComponent';
 import './PageStyles/timer.css';
 
+// REMEMBER TO FIX PLACEHOLDER TIMER BOXES
+
 export default class timer extends Component { // FIXME: timer doesn't properly transition from break time to work time
     constructor(props){
         super(props);
@@ -74,8 +76,8 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                 this.handleBreaktoWorkTime()
 
             }
-            if(this.state.isBreakTime && this.state.repTime==0){
-                console.log("STOP THE FUCKING SHIT")
+            if(this.state.isBreakTime && this.state.repTime==0){ // End of repititions, back to timer option menu
+                console.log("Completed!")
                 this.setState({
                     minutesLeft:null,
                     secondsLeft:null,

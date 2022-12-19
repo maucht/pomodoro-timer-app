@@ -30,7 +30,6 @@
     font-style: normal;
     font-display: swap;
   }
-@media only screen and (min-width:1024px){
 #timerStartWindow{
     position:absolute;
     min-height:70vh;
@@ -55,17 +54,20 @@
   position:relative;
   display:flex;
   min-width:90%;
+  min-height:10%;
+  max-height:10%;
   max-width:90%;
   top:10vh;
   left:5%;
 
   font-size:3vh;
   flex-direction:row;
-  gap:2vw;
+  gap:2vh;
 
 }
 #timerWorkTimeOptions{
   display:flex;
+  padding-left:1vw;
   gap:3vw;
 }
 .timerTimeOptionBox{
@@ -128,7 +130,7 @@
   position:relative;
   display:flex;
   flex-direction:row;
-  gap:1.5vw;
+  gap:2vh;
   min-width:90%;
   max-width:90%;
   top:18vh;
@@ -136,6 +138,7 @@
 }
 #timerBreakTimeOptions{
   display:flex;
+  padding-left:0.7vw;
   gap:3vw;
 }
 #timerBreakTimeBoxOne{
@@ -179,11 +182,12 @@
 
   font-size:3vh;
   flex-direction:row;
-  gap:1.5vw;
+  gap:2vh;
 
 }
 #timerRepTimeOptions{
   display:flex;
+  padding-left:0.5vw;
   gap:3vw;
 }
 #timerRepTimeBoxOne{
@@ -236,152 +240,23 @@
   text-align:center;
   width:100%;
 }
-}
 
-@media only screen and (max-width:1024px){
-  #timerStartWindow{
-      position:absolute;
-      min-height:70vh;
-      min-width:50vw;
-      max-height:70vh;
-      max-width:50vw;
-  
-      top:20vh;
-      left:5vw;
-  
-      border-style:solid;
-      border-color:gray;
-      border-radius:4px;
-      background-color:rgba(245,245,245,1);
-  
-  }
-  #timerStartWindowHeader{
-    text-align:center;
-    width:100%;
-  }
-  #timerWorkTimePrompt{
-    position:relative;
-    display:flex;
-    width:95%;
-    top:10vh;
-    left:5%;
-  
-    font-size:3vh;
-    flex-direction:row;
-    gap:2vw;
-  
-  }
-  #timerWorkTimeOptions{
-    display:flex;
-    gap:2vw;
-  }
+@media only screen and (max-height:600px){ 
   .timerTimeOptionBox{
-    position:relative;
-  
-    min-height:30px;
-    min-width:30px;
-    max-height:30px;
-    max-width:30px;
-    top:-15px;
-    border-radius:6px;
-    border-style:solid;
-    border-color:rgba(67, 131, 250,0.7);
-    transition:all 0.2 ease-in-out;
+    min-height:35px;
+    min-width:35px;
+    max-height:35px;
+    max-width:35px;
   }
-  .timerTimeOptionBox:hover{
-    transition:all 0.2 ease-in-out;
-    background-color:rgba(67, 131, 250,0.7);
-    color:white;
+  }
+@media only screen and (max-width:1440px){
+  .timerTimeOptionBox{
+    min-height:35px;
+    min-width:35px;
+    max-height:35px;
+    max-width:35px;
   }
   .timerTimeOptionBox::after{
-    content:"";
-    text-align:center;
-    font-size:1.25vh;
-    line-height:30px;
-    padding-left:5px;
+    font-size:1.5vh;
   }
-  #timerWorkTimeBoxOne{
-    order:1;
-  }
-  #timerWorkTimeBoxTwo{
-    order:2;
-  }
-  #timerWorkTimeBoxThree{
-    order:3;
-  }
-  #timerWorkTimeBoxFour{
-    order:4;
-  }
-  #timerWorkTimeBoxFive{
-    order:5;
-  }
-  #timerWorkTimeBoxOne::after{
-    content:"10m";
-    
-  }
-  #timerWorkTimeBoxTwo::after{
-    content:"15m";
-  }
-  #timerWorkTimeBoxThree::after{
-    content:"20m";
-  }
-  #timerWorkTimeBoxFour::after{
-    content:"25m";
-  }
-  #timerWorkTimeBoxFive::after{
-    content:"30m";
-  }
-  
-
-  #timerRepTimePrompt{
-    position:relative;
-    display:flex;
-    width:95%;
-    top:30vh;
-    left:5%;
-  
-    font-size:3vh;
-    flex-direction:row;
-    gap:2vw;
-  
-  }
-  #timerRepTimeOptions{
-    display:flex;
-    gap:2vw;
-  }
-  #timerRepTimeBoxOne{
-    order:1;
-  }
-  #timerRepTimeBoxTwo{
-    order:2;
-  }
-  #timerRepTimeBoxThree{
-    order:3;
-  }
-  #timerRepTimeBoxFour{
-    order:4;
-  }
-  #timerRepTimeBoxFive{
-    order:5;
-  }
-  
-  #audioPanel{
-    position:absolute;
-    min-height:70vh;
-    min-width:25vw;
-    max-height:70vh;
-    max-width:25vw;
-  
-    left:65vw;
-    top:20vh;
-    
-    border-style:solid;
-    border-color:gray;
-    border-radius:4px;
-    background-color:rgba(245,245,245,1);
-  }
-  #audioPanelHeader{
-    text-align:center;
-    width:100%;
-  }
-  }
+}
