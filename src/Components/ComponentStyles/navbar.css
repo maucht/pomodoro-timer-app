@@ -162,3 +162,8 @@
     color:rgb(67, 131, 250);
   }
 }
+@media only screen and (min-width:1680px){
+.navBarLinks{
+  width:200px;
+}
+}

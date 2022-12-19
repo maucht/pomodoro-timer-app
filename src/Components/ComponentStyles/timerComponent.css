@@ -51,3 +51,8 @@
     color:rgba(250, 67, 67, 0.7);
 
 }
+#distractionCounter{
+    position:relative;
+    top:70vh;
+    left:3vw;
+}

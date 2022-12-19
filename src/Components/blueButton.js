@@ -8,6 +8,7 @@ const BlueButton = (props) => {
   var buttonDict={ // Id dictionary
     banner:"bannerButton",
     timerSubmit:"timerSubmitButton",
+    timerDistraction:"timerDistraction"
   }
   switch(props.purpose){ // Purpose and function for button declared in props
     case("navigation"): // Navigate to another page

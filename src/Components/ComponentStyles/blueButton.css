@@ -43,6 +43,10 @@
     line-height:8vh;
     left:40vw;
   }
+  #timerDistraction{
+    background-color:rgba(250, 67, 67, 1);
+  }
+
 @media only screen and (max-width:1024px){
   .blueButton{
     font-size:1.2vw;

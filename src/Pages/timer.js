@@ -222,9 +222,6 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                 }
         )
     }
-        else{
-            console.log("Fuck you")
-        }
     }
     timerStartWindow(){ // Use text areas with modern, clean looking design
         return(
@@ -280,7 +277,12 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
         if((this.state.minutesLeft!=null || this.state.secondsLeft!=null)){
             return(
                 <>
-                <TimerComponent minutesLeft={this.state.minutesLeft} secondsLeft={this.state.secondsLeft} timerSection={this.state.isWorkTime ? "Work Time":"Break Time"}/>
+                <TimerComponent 
+                minutesLeft={this.state.minutesLeft} 
+                secondsLeft={this.state.secondsLeft} 
+                timerSection={this.state.isWorkTime ? "Work Time":"Break Time"}
+                isWorkTime={this.state.isWorkTime}
+                />
                 </>
             )
         }

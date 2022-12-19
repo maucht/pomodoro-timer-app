@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import BlueButton from './blueButton';
 import './ComponentStyles/timerComponent.css'
 const TimerComponent = (props) => { //FIXME: Minutes displayed jumps when seconds reaches 0
     var displayMinutes=props.minutesLeft.toString()
@@ -15,18 +16,33 @@ const TimerComponent = (props) => { //FIXME: Minutes displayed jumps when second
     if(displaySeconds.length===1){
         displaySeconds="0"+displaySeconds
     }
-    if(displayMinutes.length>2||displaySeconds.length>2){ // Maybe add if seconds==60, seconds=0
+    if(displayMinutes.length>2||displaySeconds.length>2){ 
         return(
             <div id={props.timerSection=="Work Time" ? "timerDisplayWork":"timerDisplayBreak"}>Loading...</div>
         )
     }
     else{
-    return (
-        <>
-        <div id={props.timerSection=="Work Time" ? "timerDisplayHeaderWork":"timerDisplayHeaderBreak"}>{props.timerSection}</div>
-        <div id={props.timerSection=="Work Time" ? "timerDisplayWork":"timerDisplayBreak"}>{displayMinutes}:{displaySeconds}</div>
-        </>
-      )
+        switch(props.isWorkTime){
+            case(true):
+            return (
+                <>
+                <div id="distractionCounter">Distractions: COOKIES</div>
+                <BlueButton purpose="generic" idKey="timerDistraction" content="Distracted"/>
+                <div id={props.timerSection=="Work Time" ? "timerDisplayHeaderWork":"timerDisplayHeaderBreak"}>{props.timerSection}</div>
+                <div id={props.timerSection=="Work Time" ? "timerDisplayWork":"timerDisplayBreak"}>{displayMinutes}:{displaySeconds}</div>
+                </>
+            )
+            break;
+            case(false):
+            return (
+                <>
+                <div id={props.timerSection=="Work Time" ? "timerDisplayHeaderWork":"timerDisplayHeaderBreak"}>{props.timerSection}</div>
+                <div id={props.timerSection=="Work Time" ? "timerDisplayWork":"timerDisplayBreak"}>{displayMinutes}:{displaySeconds}</div>
+                </>
+            )
+            break;
+        }
+
     }
 
 }
