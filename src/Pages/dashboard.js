@@ -26,6 +26,7 @@ export default class dashboard extends Component {
 
     }
     render() {
+        document.cookie=("session_distraction_count=0; expires=Thu, 01 Jan 1970 00:00:00 UTC")
         return (
             <>
             <>{this.dataWindow()}</>

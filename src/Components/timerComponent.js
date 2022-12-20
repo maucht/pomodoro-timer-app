@@ -6,11 +6,19 @@ const TimerComponent = (props) => { //FIXME (or not): Minutes displayed jumps wh
         if(document.cookie.indexOf("session_distraction_count=")===-1){
             return -1
         }
-        const decodeCookie = decodeURIComponent(document.cookie)
-        const cookieArray = decodeCookie.split(";")
+        /* const decodeCookie = decodeURIComponent(document.cookie)
+        const cookieArray = decodeCookie.split(';')
         const cookieArrayIndexed=cookieArray[document.cookie.indexOf("session_distraction_count")]
-        const sesDistractCountValue=cookieArrayIndexed.split("=")[1]
-        return sesDistractCountValue
+        console.log(document.cookie.indexOf("session_distraction_count"))
+        console.log(cookieArray[1].split('=')[1])
+        const sesDistractCountValue=cookieArrayIndexed.split('=')[1] */
+        
+
+        const cookieFull = document.cookie.substring(document.cookie.indexOf("session_distraction_count=",";"))
+        const cookieValue = cookieFull.substring(cookieFull.indexOf("=")+1)
+        console.log(cookieValue)
+
+        return cookieValue
     }
     const DistractCookieSetter = () => {
         if(DistractCookieGetter()===-1){
@@ -49,7 +57,7 @@ const TimerComponent = (props) => { //FIXME (or not): Minutes displayed jumps wh
             case(true):
             return (
                 <>
-                <div id="distractionCounter">Distractions: {DistractCookieGetter()===-1 ? "0" : DistractCookieGetter()}</div>
+                <div id="distractionCounter">Distractions: {(DistractCookieGetter())===-1 ? "0" : (DistractCookieGetter())}</div>
                 <div onClick={()=>DistractCookieSetter()}><BlueButton purpose="generic" idKey="timerDistraction" content="Distracted"/></div>
                 <div id={props.timerSection=="Work Time" ? "timerDisplayHeaderWork":"timerDisplayHeaderBreak"}>{props.timerSection}</div>
                 <div id={props.timerSection=="Work Time" ? "timerDisplayWork":"timerDisplayBreak"}>{displayMinutes}:{displaySeconds}</div>

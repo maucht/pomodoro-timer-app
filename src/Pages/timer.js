@@ -78,6 +78,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             }
             if(this.state.isBreakTime && this.state.repTime==0){ // End of repititions, back to timer option menu
                 console.log("Completed!")
+                this.handleCookieDistribution()
                 this.setState({
                     minutesLeft:null,
                     secondsLeft:null,
@@ -94,6 +95,30 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                 })}
             },1000)
 
+    }
+    handleCookieDistribution(){
+        if(document.cookie.indexOf("session_distraction_count")===-1){
+            document.cookie="session_distraction_count=0"
+        }
+
+        const sesCookieFull = document.cookie.substring(document.cookie.indexOf("session_distraction_count=",";"))
+        const sesCookieValue = sesCookieFull.substring(sesCookieFull.indexOf("=")+1)
+
+        if(document.cookie.indexOf("total_distractions")===-1){
+            console.log("Total Distraction cookie missing, creating cookie")
+            document.cookie=("total_distractions="+sesCookieValue)
+        }
+        else{
+            const totCookieFull = document.cookie.substring(document.cookie.indexOf("total_distractions=",';'))
+            const totCookieValue = totCookieFull.substring(totCookieFull.indexOf("=")+1)
+
+            /* const cookieArrayTotIndex=cookieArray[document.cookie.indexOf("total_distractions")]
+            const totDistractCountValue=cookieArrayTotIndex.split("=")[1]
+            console.log(totDistractCountValue) */
+            console.log("Adding ",totCookieValue, " and ", sesCookieValue)
+            document.cookie = ("total_distractions="+((parseInt(sesCookieValue)+parseInt(totCookieValue))).toString())
+        }
+        document.cookie="session_distraction_count=0; expires=Thu, 18 Dec 2013 12:00:00 UTC" 
     }
     handleWorkToBreakTime(){
         const d = new Date()
@@ -207,6 +232,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
     }
     handleTimerSubmit(){
         const d = new Date()
+        document.cookie=("session_distraction_count=0; expires=Thu, 01 Jan 1970 00:00:00 UTC")
         if(this.state.selectedWorkTime!=-1 && this.state.selectedBreakTime!=-1 && this.state.selectedRepTime!=-1){
             this.setState({
                 workTime:this.state.selectedWorkTime,
