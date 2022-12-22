@@ -93,8 +93,14 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                     targetTime:d.getTime(),
                     repTime:-1,
                 })}
+
+                this.handleNewData()
+
             },1000)
 
+    }
+    handleNewData(){
+        
     }
     handleCookieDistribution(){
         if(document.cookie.indexOf("session_distraction_count")===-1){
@@ -112,13 +118,12 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             const totCookieFull = document.cookie.substring(document.cookie.indexOf("total_distractions=",';'))
             const totCookieValue = totCookieFull.substring(totCookieFull.indexOf("=")+1)
 
-            /* const cookieArrayTotIndex=cookieArray[document.cookie.indexOf("total_distractions")]
-            const totDistractCountValue=cookieArrayTotIndex.split("=")[1]
-            console.log(totDistractCountValue) */
             console.log("Adding ",totCookieValue, " and ", sesCookieValue)
             document.cookie = ("total_distractions="+((parseInt(sesCookieValue)+parseInt(totCookieValue))).toString())
         }
-        document.cookie="session_distraction_count=0; expires=Thu, 18 Dec 2013 12:00:00 UTC" 
+        document.cookie="session_distraction_count=0; expires=Thu, 18 Dec 2013 12:00:00 UTC"  
+
+        // CALL TO A FUNCTION THAT WILL POST TO DJANGO
     }
     handleWorkToBreakTime(){
         const d = new Date()
