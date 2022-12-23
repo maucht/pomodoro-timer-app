@@ -120,16 +120,13 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
 
         var idCookieFull = document.cookie.substring(document.cookie.indexOf("userId=",";"))
         var idCookieValue = (idCookieFull.substring(idCookieFull.indexOf("=")+1)).split(";")[0]
-        axios({
-            method:"post",
-            url:url,
-            data:{
+        axios.post(url,
+            {
                 idKey:idCookieValue,
                 workTime:workTime,
                 breakTime:breakTime,
             }
-
-        })
+            )
         .then(response =>{
                 console.log("Posted data")
         })

@@ -7,8 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import {Routes, Route} from "react-router-dom";
 
 
-// December - Present
-// Implement cookie based backend and use Python django/flask
+// December 2022
 
 
 // Struggles: onClick bluebutton not working well with class functions
