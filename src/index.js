@@ -13,6 +13,7 @@ import {Routes, Route} from "react-router-dom";
 
 // Struggles: onClick bluebutton not working well with class functions
 // Timer states needing to be updated one after the other. Eventually i decided on setIntervals and loading text in its place
+//   Constant 403s Forbidden with axios trying to post data to the backend. I eventually made the api paths csrf exempt, at cost of security
 
 //What I would fix: double clicking on timer settings because of timer setState timing.
     // inconsistent transitions from work time to break time, likely due to lag

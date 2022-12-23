@@ -6,17 +6,9 @@ const TimerComponent = (props) => { //FIXME (or not): Minutes displayed jumps wh
         if(document.cookie.indexOf("session_distraction_count=")===-1){
             return -1
         }
-        /* const decodeCookie = decodeURIComponent(document.cookie)
-        const cookieArray = decodeCookie.split(';')
-        const cookieArrayIndexed=cookieArray[document.cookie.indexOf("session_distraction_count")]
-        console.log(document.cookie.indexOf("session_distraction_count"))
-        console.log(cookieArray[1].split('=')[1])
-        const sesDistractCountValue=cookieArrayIndexed.split('=')[1] */
         
-
         const cookieFull = document.cookie.substring(document.cookie.indexOf("session_distraction_count=",";"))
         const cookieValue = cookieFull.substring(cookieFull.indexOf("=")+1)
-        console.log(cookieValue)
 
         return cookieValue
     }

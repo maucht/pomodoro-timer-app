@@ -1,8 +1,10 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import BlueButton from '../Components/blueButton';
 import NavBar from '../Components/navbar';
 import TimerComponent from '../Components/timerComponent';
 import './PageStyles/timer.css';
+
 
 // REMEMBER TO FIX PLACEHOLDER TIMER BOXES
 
@@ -79,6 +81,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             if(this.state.isBreakTime && this.state.repTime==0){ // End of repititions, back to timer option menu
                 console.log("Completed!")
                 this.handleCookieDistribution()
+                this.handlePostData(this.state.workTime, this.state.breakTime)
                 this.setState({
                     minutesLeft:null,
                     secondsLeft:null,
@@ -94,13 +97,46 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                     repTime:-1,
                 })}
 
-                this.handleNewData()
+                
 
             },1000)
 
     }
-    handleNewData(){
-        
+    handlePostData(workTime,breakTime){
+        const url="http://localhost:8000/api/data"
+
+        var tokenCookieFull = document.cookie.substring(document.cookie.indexOf("csrftoken=",";"))
+        var tokenCookieValue = tokenCookieFull.substring(tokenCookieFull.indexOf("="+1)).split(";")[0]
+
+        var totCookieFull="total_distractions=0"
+        var totCookieValue=0
+        if(document.cookie.indexOf("total_distractions=")===-1){
+            document.cookie="total_distractions=0"
+        }
+        else{
+            totCookieFull = document.cookie.substring(document.cookie.indexOf("total_distractions=",';'))
+            totCookieValue = totCookieFull.substring(totCookieFull.indexOf("=")+1).split(";")[0]
+        }
+
+        var idCookieFull = document.cookie.substring(document.cookie.indexOf("userId=",";"))
+        var idCookieValue = (idCookieFull.substring(idCookieFull.indexOf("=")+1)).split(";")[0]
+        axios({
+            method:"post",
+            url:url,
+            data:{
+                idKey:idCookieValue,
+                workTime:workTime,
+                breakTime:breakTime,
+            }
+
+        })
+        .then(response =>{
+                console.log("Posted data")
+        })
+        .catch(err => {
+                console.log(err)
+        });
+
     }
     handleCookieDistribution(){
         if(document.cookie.indexOf("session_distraction_count")===-1){
@@ -108,7 +144,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
         }
 
         const sesCookieFull = document.cookie.substring(document.cookie.indexOf("session_distraction_count=",";"))
-        const sesCookieValue = sesCookieFull.substring(sesCookieFull.indexOf("=")+1)
+        const sesCookieValue = (sesCookieFull.substring(sesCookieFull.indexOf("=")+1)).split(";")[0]
 
         if(document.cookie.indexOf("total_distractions")===-1){
             console.log("Total Distraction cookie missing, creating cookie")
@@ -116,7 +152,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
         }
         else{
             const totCookieFull = document.cookie.substring(document.cookie.indexOf("total_distractions=",';'))
-            const totCookieValue = totCookieFull.substring(totCookieFull.indexOf("=")+1)
+            const totCookieValue = (totCookieFull.substring(totCookieFull.indexOf("=")+1)).split(";")[0]
 
             console.log("Adding ",totCookieValue, " and ", sesCookieValue)
             document.cookie = ("total_distractions="+((parseInt(sesCookieValue)+parseInt(totCookieValue))).toString())
