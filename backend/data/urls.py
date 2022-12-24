@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/data',csrf_exempt(views.datas),name='datas'),
     path('api/data/<int:id>',csrf_exempt(views.data), name='data'),
     path('api/stats',csrf_exempt(views.stats),name='stats'),
+    path('api/stats/<int:id>',csrf_exempt(views.stat),name='stat'),
 ]

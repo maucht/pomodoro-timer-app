@@ -40,7 +40,36 @@ def data(request,id):
         return Response(status=status.HTTP_204_NO_CONTENT)
     return Response({'data':serializer.data})
 
+
+@api_view(['GET','POST'])
 def stats(request):
     info = OverallStats.objects.all()
-    serializer = StatsSerializer(info,many = True)
-    return JsonResponse({'stats': serializer.data})
+    if request.method == 'GET':
+        serializer = StatsSerializer(info,many=True)
+        return Response({'stats':serializer.data})
+    elif request.method == 'POST':
+        serializer = StatsSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'stats':serializer.data})
+
+@api_view(['GET','POST','DELETE'])
+def stat(request,id):
+    try: 
+        info = OverallStats.objects.get(pk=id)
+    except OverallStats.DoesNotExist:
+        raise Http404("Data does not exist")
+    serializer = StatsSerializer(info)
+
+    if request.method == "GET":
+        return Response({'stat':serializer.data})
+    elif request.method == "POST":
+        serializer = DataSerializer(info, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'stat':serializer.data})
+        return Response(serializer.errors)
+    elif request.method== "DELETE":
+        info.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response({'stat':serializer.data})
