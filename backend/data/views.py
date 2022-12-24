@@ -53,7 +53,7 @@ def stats(request):
             serializer.save()
             return Response({'stats':serializer.data})
 
-@api_view(['GET','POST','DELETE'])
+@api_view(['GET','POST','DELETE','PATCH'])
 def stat(request,id):
     try: 
         info = OverallStats.objects.get(pk=id)
@@ -64,11 +64,17 @@ def stat(request,id):
     if request.method == "GET":
         return Response({'stat':serializer.data})
     elif request.method == "POST":
-        serializer = DataSerializer(info, data = request.data)
+        serializer = StatsSerializer(info, data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({'stat':serializer.data})
         return Response(serializer.errors)
+    elif request.method=="PATCH":
+        serializer = StatsSerializer(info, data = request.data, partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'stat':serializer.data})
+        return Response(status=status.HTTP_400_BAD_REQUEST)
     elif request.method== "DELETE":
         info.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
