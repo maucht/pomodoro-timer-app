@@ -26,7 +26,7 @@ if(document.cookie.indexOf("userId")===-1){
 
   for ( let i = 0; i < 16; i++ ) {
     randomString += characters.charAt(Math.floor(Math.random()*characters.length));
-    document.cookie=("userId="+randomString)
+    document.cookie=("userId="+randomString+"; Max-Age=63072000 ")
    }
 }
 
