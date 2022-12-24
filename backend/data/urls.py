@@ -20,6 +20,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/data',csrf_exempt(views.data),name='data'),
-    path('api/stats',csrf_exempt(views.data),name='stats')
+    path('api/data',csrf_exempt(views.datas),name='datas'),
+    path('api/stats',csrf_exempt(views.stats),name='stats')
 ]
