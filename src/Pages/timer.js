@@ -80,8 +80,8 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             }
             if(this.state.isBreakTime && this.state.repTime==0){ // End of repititions, back to timer option menu
                 console.log("Completed!")
-                this.handleCookieDistribution()
                 this.handlePostData(this.state.workTime, this.state.breakTime)
+                this.handleCookieDistribution()
                 this.setState({
                     minutesLeft:null,
                     secondsLeft:null,
@@ -103,13 +103,20 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
 
     }
     handlePostData(workTime,breakTime){
+        
         const url="http://localhost:8000/api/data"
-
-        var tokenCookieFull = document.cookie.substring(document.cookie.indexOf("csrftoken=",";"))
-        var tokenCookieValue = tokenCookieFull.substring(tokenCookieFull.indexOf("="+1)).split(";")[0]
 
         var totCookieFull="total_distractions=0"
         var totCookieValue=0
+
+
+        if(document.cookie.indexOf("session_distraction_count")===-1){
+            document.cookie="session_distraction_count=0"
+        }
+
+        const sesCookieFull = document.cookie.substring(document.cookie.indexOf("session_distraction_count=",";"))
+        const sesCookieValue = (sesCookieFull.substring(sesCookieFull.indexOf("=")+1)).split(";")[0]
+
         if(document.cookie.indexOf("total_distractions=")===-1){
             document.cookie="total_distractions=0"
         }
@@ -125,6 +132,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                 idKey:idCookieValue,
                 workTime:workTime,
                 breakTime:breakTime,
+                sessionDistractions:sesCookieValue,
             }
             )
         .then(response =>{
@@ -133,6 +141,108 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
         .catch(err => {
                 console.log(err)
         });
+        this.handleOverallStatsDistribution(workTime,sesCookieValue,totCookieValue)
+    }
+    handleOverallStatsDistribution(workTime,sesCookieValue,totCookieValue){
+        var idCookieFull = document.cookie.substring(document.cookie.indexOf("userId=",";"))
+        var idCookieValue = (idCookieFull.substring(idCookieFull.indexOf("=")+1)).split(";")[0]
+
+        var tenWorkTimeCount=0
+        var fifteenWorkTimeCount=0
+        var twentyWorkTimeCount=0
+        var twentyFiveWorkTimeCount=0
+        var thirtyWorkTimeCount=0
+
+        var patchable=false
+        var patchableStatId=0
+        var patchableTimerCount=0
+        var data=null
+        var statData=null
+        axios.get('http://localhost:8000/api/data')
+            .then(response =>{
+                data = response.data.datas
+                for(var object in data){
+                    if(data[object].idKey===idCookieValue){
+                        switch(data[object].workTime){
+                            case(10000):
+                                tenWorkTimeCount++
+                                break;
+                            case(900000):
+                                fifteenWorkTimeCount++
+                                break;
+                            case(1200000):
+                                twentyWorkTimeCount++
+                                break;
+                            case(1500000):
+                                twentyFiveWorkTimeCount++
+                                break;
+                            case(1800000):
+                                thirtyWorkTimeCount++
+                                break;
+                            default:
+                                tenWorkTimeCount++
+                                break;
+                        }
+                    }
+                }
+                axios.get('http://localhost:8000/api/stats')
+                .then(response=>{
+                    statData=response.data.stats
+                    for(var object in statData){
+                        console.log(statData[object].idKey)
+                        if(statData[object].idKey===idCookieValue){
+                            console.log("YOU SHOULDNT BE FUCKING POSTING")
+                            console.log(statData[object])
+                            patchable=true
+                            patchableStatId=statData[object].id
+                            patchableTimerCount=statData[object].completedTimers
+                            break
+                        }
+                    }
+
+                    console.log(patchable)
+                    if(patchable){
+                        axios.patch('http://localhost:8000/api/stats/'+patchableStatId,{
+                            completedTimers:parseInt(patchableTimerCount)+parseInt(1),
+                            totalDistractions:parseInt(totCookieValue)+parseInt(sesCookieValue),
+                            tenWorkTimeCount,
+                            fifteenWorkTimeCount,
+                            twentyWorkTimeCount,
+                            twentyFiveWorkTimeCount,
+                            thirtyWorkTimeCount
+                        })
+                        .then(response=>{
+                            console.log(response)
+                        })
+                        .catch(err=>{
+                            console.log(err)
+                        })
+                    }
+                    else{
+                        axios.post('http://localhost:8000/api/stats',{
+                            idKey:idCookieValue,
+                            completedTimers:1,
+                            totalDistractions:sesCookieValue,
+                            tenWorkTimeCount,
+                            fifteenWorkTimeCount,
+                            twentyWorkTimeCount,
+                            twentyFiveWorkTimeCount,
+                            thirtyWorkTimeCount
+                        })
+                        .then(response=>{
+                            console.log(response)
+                        })
+                        .catch(err=>{
+                            console.log(err)
+                        })
+                    }
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+            })
+        console.log(tenWorkTimeCount)
+        
 
     }
     handleCookieDistribution(){
@@ -156,7 +266,6 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
         }
         document.cookie="session_distraction_count=0; expires=Thu, 18 Dec 2013 12:00:00 UTC"  
 
-        // CALL TO A FUNCTION THAT WILL POST TO DJANGO
     }
     handleWorkToBreakTime(){
         const d = new Date()

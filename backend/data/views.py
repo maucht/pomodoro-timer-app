@@ -64,7 +64,7 @@ def stat(request,id):
     if request.method == "GET":
         return Response({'stat':serializer.data})
     elif request.method == "POST":
-        serializer = StatsSerializer(info, data = request.data)
+        serializer = StatsSerializer(info, data = request.data, many=True)
         if serializer.is_valid():
             serializer.save()
             return Response({'stat':serializer.data})

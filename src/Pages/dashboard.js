@@ -19,12 +19,12 @@ export default class dashboard extends Component {
         let data;
         axios.get("http://localhost:8000/api/data")
             .then(response => {
-                data = response.data.data
+                data = response.data.datas
                 this.setState({
                     details: data
                 })
                 console.log(this.state.details)
-                console.log(this.state.details[0].idKey) // Use hashmaps?
+                //console.log(this.state.details[0].idKey) // Use hashmaps?
                 for(var object in this.state.details){
                     console.log(this.state.details[object].idKey)
                     // if this.state.details[object].idKey equals userId cookie, then setState for user's data
