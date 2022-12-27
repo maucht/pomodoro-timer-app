@@ -27,4 +27,126 @@
         border-color:gray;
 
     }
+    #dataListWindow{
+        position:absolute;
+        display:flex;
+
+        min-height:80%;
+        min-width:80%;
+        max-height:80%;
+        max-width:80%;
+        left:10%;
+        top:25%;
+
+        font-size:2vw;
+        flex-direction:column;
+        gap:3vh;
+    }
+    #dataTimersCompleted{
+        position:relative;
+
+        color:rgb(36, 196, 249)
+    }
+    #dataTotalDistractions{
+        position:relative;
+        color:rgb(255, 56, 56)
+    }
+    #dataFavoriteWorkTime{
+        position:relative;
+        color:rgb(33, 199, 160)
+    }
+    #timerPieChart{
+        position:absolute;
+        height:55vh !important;
+        width:auto !important;
+
+        top:20vh;
+        left:65vw;
+    }
+    #legendWindow{
+        position:absolute;
+        display:flex;
+        min-height:25vh;
+        min-width:30vw;
+        max-height:25vh;
+        min-width:30vw;
+
+        top:70vh;
+        left:60vw;
+
+        flex-direction:column;
+    }
+    #legendRow1{
+        position:absolute;
+        height:30%;
+        width:100%;
+    }
+    .legendBox{
+        position:absolute;
+        min-height:20px;
+        min-width:20px;
+        max-height:40px;
+        max-width:40px;
+    
+        background-color:red;
+        z-index:10;
+        border-radius:2px;
+        border-style:solid;
+        border-color:black;
+    }
+    #legendText1{
+        position:absolute;
+        font-size:1.3vw;
+        left:20%;
+    }
+    #legendBox1{
+        left:10%;
+
+        background-color:rgb(62, 221, 255);
+    }
+    #legendText2{
+        position:absolute;
+        font-size:1.3vw;
+        left:20%;
+        top:30%;
+    }
+    #legendBox2{
+        left:10%;
+        top:30%;
+        background-color:rgb(62, 191, 255);
+    }
+    #legendText3{
+        position:absolute;
+        font-size:1.3vw;
+        left:70%;
+    }
+    #legendBox3{
+        position:absolute;
+        left:60%;
+        background-color:rgb(62, 161, 255);
+    }
+    #legendText4{
+        position:absolute;
+        font-size:1.3vw;
+        top:30%;
+        left:70%;
+    }
+    #legendBox4{
+        position:absolute;
+        left:60%;
+        top:30%;
+        background-color:rgb(62, 130, 255);
+    }
+    #legendText5{
+        position:absolute;
+        font-size:1.3vw;
+        left:70%;
+        top:60%;
+    }
+    #legendBox5{
+        position:absolute;
+        left:60%;
+        top:60%;
+        background-color:rgb(62, 77, 255);
+    }
 }

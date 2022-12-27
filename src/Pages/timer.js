@@ -191,7 +191,6 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                     for(var object in statData){
                         console.log(statData[object].idKey)
                         if(statData[object].idKey===idCookieValue){
-                            console.log("YOU SHOULDNT BE FUCKING POSTING")
                             console.log(statData[object])
                             patchable=true
                             patchableStatId=statData[object].id
