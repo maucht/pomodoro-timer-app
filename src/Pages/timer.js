@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import BlueButton from '../Components/blueButton';
 import NavBar from '../Components/navbar';
 import TimerComponent from '../Components/timerComponent';
+import AudioPlayer from '../Components/audioPlayer';
+import tracks from '../audioTracks'
 import './PageStyles/timer.css';
 
 
@@ -25,6 +27,8 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             targetTime:-1,
             isWorkTime:false,
             isBreakTime:false,
+
+            selectedAudio:null,
         }
     }
     componentDidMount(){ // The transition from work time to break time works only sometimes, likely because of lag with setIntervals
@@ -376,6 +380,28 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             selectedRepTime:valueDict[boxSelected]
         })
     }
+    handleAudioSelect(audioIndex){
+        var idMap = {
+            0 : "audio1",
+            1 : "audio2",
+            2 : "audio3",
+            3 : "audio4",
+            4 : "audio5"
+        }
+        this.setState({
+            selectedAudio: tracks[audioIndex]
+        })
+        var selectedElement=document.getElementById(idMap[audioIndex])
+        selectedElement.style.backgroundColor="rgba("+67+","+131+","+250+","+0.85+")"
+        selectedElement.style.color="white"
+        for(var id in tracks){
+            if(id!=audioIndex){
+                document.getElementById(idMap[id]).style.backgroundColor=null
+                document.getElementById(idMap[id]).style.color=null
+            }
+        }
+        
+    }
     handleTimerSubmit(){
         const d = new Date()
         document.cookie=("session_distraction_count=0; expires=Thu, 01 Jan 1970 00:00:00 UTC")
@@ -439,7 +465,23 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
         return(
             <div id="audioPanel">
                 <div id="audioPanelHeader">Audio</div>
-
+                <div id="audioTrackList">
+                    <div id="audioTrack1" className="audioTracks">Rain and Thunder 
+                        <div className="timerTimeOptionBox audio" id="audio1" onClick={()=>this.handleAudioSelect(0)}></div>
+                    </div>
+                    <div id="audioTrack2" className="audioTracks">City Noises 
+                        <div className="timerTimeOptionBox audio" id="audio2" onClick={()=>this.handleAudioSelect(1)}></div>
+                    </div>
+                    <div id="audioTrack3" className="audioTracks">Cafe Ambience 
+                        <div className="timerTimeOptionBox audio" id="audio3" onClick={()=>this.handleAudioSelect(2)}></div>
+                    </div>
+                    <div id="audioTrack4" className="audioTracks">Train Ride 
+                        <div className="timerTimeOptionBox audio" id="audio4" onClick={()=>this.handleAudioSelect(3)}></div>
+                    </div>
+                    <div id="audioTrack5" className="audioTracks">Waterfall Effects 
+                        <div className="timerTimeOptionBox audio" id="audio5" onClick={()=>this.handleAudioSelect(4)}></div>
+                    </div>
+                </div>
             </div>
 
         )
@@ -454,6 +496,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                 secondsLeft={this.state.secondsLeft} 
                 timerSection={this.state.isWorkTime ? "Work Time":"Break Time"}
                 isWorkTime={this.state.isWorkTime}
+                track = {this.state.selectedAudio}
                 />
                 </>
             )
@@ -481,6 +524,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
                     <>{this.timerInterface()}</>
                     </>
                 )
+
         }
     }
 }

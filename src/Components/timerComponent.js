@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import BlueButton from './blueButton';
+import AudioPlayer from './audioPlayer';
 import './ComponentStyles/timerComponent.css'
-const TimerComponent = (props) => { //FIXME (or not): Minutes displayed jumps when seconds reaches 0
-    const DistractCookieGetter = ()=>{ // timer.js will handle total distractions after this is complete
+const TimerComponent = (props) => {
+    const DistractCookieGetter = ()=>{ 
         if(document.cookie.indexOf("session_distraction_count=")===-1){
             return -1
         }
@@ -49,6 +50,7 @@ const TimerComponent = (props) => { //FIXME (or not): Minutes displayed jumps wh
             case(true):
             return (
                 <>
+                <AudioPlayer track = {props.track}/>
                 <div id="distractionCounter">Distractions: {(DistractCookieGetter())===-1 ? "0" : (DistractCookieGetter())}</div>
                 <div onClick={()=>DistractCookieSetter()}><BlueButton purpose="generic" idKey="timerDistraction" content="Distracted"/></div>
                 <div id={props.timerSection=="Work Time" ? "timerDisplayHeaderWork":"timerDisplayHeaderBreak"}>{props.timerSection}</div>
