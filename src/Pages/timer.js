@@ -300,7 +300,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             5:"timerWorkTimeBoxFive"
         }
         var valueDict={
-            1:10000,// FIXME: replace with 600000
+            1:600000,// For testing purposes: replace with 10000
             2:900000,
             3:1200000,
             4:1500000,
@@ -329,7 +329,7 @@ export default class timer extends Component { // FIXME: timer doesn't properly 
             5:"timerBreakTimeBoxFive"
         }
         var valueDict={
-            1:20000, //120000
+            1:120000, // For testing purposes: replace with 20000
             2:300000,
             3:600000,
             4:900000,
