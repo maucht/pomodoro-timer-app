@@ -13,7 +13,7 @@ This is a fullstack application built in React and Django.
 
 You will need to install [Python](https://www.python.org/downloads/) and [Node.js](https://nodejs.org/en/download/) to run this repo.
 
-## Frontend Dependencies
+### Frontend Dependencies
 
 Run the following commands in terminal to install the necessary packages:
 
@@ -27,7 +27,7 @@ Run the webpage:
 
     npm start
 
-# Backend Dependencies
+### Backend Dependencies
 
 Before installing packages, you will need to setup a virtual environment.
 
