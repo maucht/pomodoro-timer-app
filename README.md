@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# What Does This Repo Do?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repo allows the user to create, run, and track personalized pomodoro timer sessions. The user is able to create a custom combination of
+work time and break time intervals, backed with optional concentration-improving soundtracks to choose from.
+With the goal of improving productivity, the user can report the number of times they get distracted in a timer session.
+This data is processed and then output on the user's Dashboard page where they can see their stats visualized.
 
-## Available Scripts
+This is a fullstack application built in React and Django.
 
-In the project directory, you can run:
+# How to Run
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You will need to install [Python](https://www.python.org/downloads/) and [Node.js](https://nodejs.org/en/download/) to run this repo.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Frontend Dependencies
 
-### `npm test`
+Run the following commands in terminal to install the necessary packages:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    npm install create-react-app
 
-### `npm run build`
+    npm install axios
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    npm install chart.js
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Run the webpage:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    npm start
 
-### `npm run eject`
+# Backend Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Before installing packages, you will need to setup a virtual environment.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To do this, you must first navigate to the backend directory. Run the following command:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    cd backend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Then we must setup a virtual environment named .venv:
 
-## Learn More
+    py venv .venv
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To activate the virtual environment run:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    source .venv/Scripts/activate
 
-### Code Splitting
+Then install the backend dependencies as follows:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    pip install django
 
-### Analyzing the Bundle Size
+    pip install django-cors-headers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    pip install django-rest-framework
 
-### Making a Progressive Web App
+To start the backend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    py manage.py runserver
